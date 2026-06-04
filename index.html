@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Readooner</title>
+  <!-- PDF.js & ePub.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/epubjs@0.3.88/dist/epub.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="light">
+  <header>
+    <h1>Readooner</h1>
+    <div class="controls">
+      <button id="theme-toggle" class="btn" aria-label="Toggle theme">Dark</button>
+      <label>
+        Font:
+        <select id="font-size">
+          <option value="0.9">Small</option>
+          <option value="1" selected>Normal</option>
+          <option value="1.2">Large</option>
+          <option value="1.4">XL</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <section id="library">
+      <h2>Upload / Library</h2>
+      <div class="controls">
+        <input type="file" id="file-input" accept=".txt,.epub,.doc,.docx" />
+        <button id="load-btn" class="btn">Load</button>
+      </div>
+      <label for="text-input">Or Paste Text:</label>
+      <textarea
+        id="text-input"
+        placeholder="Paste or type your text here…"
+        rows="5"
+        style="width:100%; margin-top:.5em; padding:.5em; font-size:1rem;"
+      ></textarea>
+      <ul id="book-list"></ul>
+    </section>
+
+    <section id="reader" class="hidden" aria-live="polite">
+      <div class="controls">
+        <button id="back-btn" class="btn">← Back</button>
+        <button id="tts-play" class="btn">Play TTS</button>
+        <label>
+          Speed
+          <input type="range" id="tts-rate" min="0.5" max="2" step="0.1" value="1" />
+        </label>
+      </div>
+
+      <div id="pdf-viewer" class="hidden"></div>
+      <div id="epub-viewer" class="hidden"></div>
+      <p id="text"></p>
+
+      <div id="saved">
+        <h3>Saved Words</h3>
+        <div id="saved-list"></div>
+      </div>
+    </section>
+
+    <div id="popup" class="hidden" role="dialog" aria-modal="true"></div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
